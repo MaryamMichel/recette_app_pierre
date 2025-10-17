@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:recette_app_pierre/Screens/form_page.dart';
 import 'package:recette_app_pierre/Widgets/recipe_list.dart';
 import 'package:recette_app_pierre/Widgets/header.dart';
+import 'package:recette_app_pierre/Widgets/time_level_form.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -36,8 +38,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF9FAFB),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.orange,
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => FormAdd()));
+        },
+        backgroundColor: Color(0xFFFF7E5F),
         child: Icon(Icons.add, size: 30),
       ),
 
