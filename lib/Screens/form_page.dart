@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:recette_app_pierre/Widgets/form_field.dart';
 import 'package:recette_app_pierre/Widgets/submit_btn2.dart';
@@ -14,6 +16,33 @@ class FormAdd extends StatefulWidget {
 
 class _FormAddState extends State<FormAdd> {
   final _formKey = GlobalKey<FormState>();
+  XFile? _imageFile;
+
+  Future<void> _takePicture() async {
+    // Obtain a list of the available cameras on the device.
+    final cameras = await availableCameras();
+
+    // Get a specific camera from the list of available cameras.
+    final firstCamera = cameras.first;
+    try {
+      final CameraController controller = CameraController(
+        firstCamera, // <-- from your main.dart global variable
+        ResolutionPreset.medium,
+      );
+
+      await controller.initialize();
+
+      final XFile image = await controller.takePicture();
+
+      setState(() {
+        _imageFile = image;
+      });
+
+      await controller.dispose();
+    } catch (e) {
+      print('Error taking picture: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,8 +113,15 @@ class _FormAddState extends State<FormAdd> {
                   ),
                   time_level_form(),
 
-                  PhotoSection(),
-
+                  PhotoSection(
+                    imageFile: _imageFile,
+                    onTakePicture: _takePicture,
+                    onDeletePicture: () {
+                      setState(() {
+                        _imageFile = null;
+                      });
+                    },
+                  ),
                   //submit_btn()
                   submit_btn2(formKey: _formKey),
                 ],
