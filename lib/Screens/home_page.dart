@@ -14,14 +14,19 @@ class HomePage extends StatelessWidget {
       "levelColor": Colors.amber[100],
       "img": "assets/Capture.PNG",
       "emoji": "🍲",
+      "ingredients": ["Dough", "Cheese", "Tomato Sauce"],
+      "steps": ["Prepare dough", "Add toppings", "Bake in oven"]
+
     },
     {
-      "name": "Couscous Royal",
+      "name": "Couscous",
       "time": "90 min",
       "level": "Difficile",
       "levelColor": Colors.red[100],
       "img": "assets/Capture.PNG",
       "emoji": "🍋",
+      "ingredients": ["Dough", "Cheese", "Tomato Sauce"],
+      "steps": ["Prepare dough", "Add toppings", "Bake in oven"]
     },
     {
       "name": "Salade Niçoise",
@@ -30,6 +35,8 @@ class HomePage extends StatelessWidget {
       "levelColor": Colors.green[100],
       "img": "assets/Capture.PNG",
       "emoji": "🥗",
+      "ingredients": ["Dough", "Cheese", "Tomato Sauce"],
+      "steps": ["Prepare dough", "Add toppings", "Bake in oven"]
     },
   ];
 

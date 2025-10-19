@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recette_app_pierre/Screens/details_page.dart';
 
 class recipe_list extends StatelessWidget {
   const recipe_list({super.key, required this.recipes});
@@ -14,7 +15,23 @@ class recipe_list extends StatelessWidget {
           itemCount: recipes.length,
           itemBuilder: (context, index) {
             final recipe = recipes[index];
-            return Container(
+            return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecipeDetailPage(
+                        emoji: recipe["emoji"],
+                        name: recipe["name"],
+                        time: recipe["time"],
+                        level: recipe["level"],
+                        ingredients: List<String>.from(recipe["ingredients"]),
+                        steps: List<String>.from(recipe["steps"]),
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
               margin: const EdgeInsets.only(bottom: 15),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -23,15 +40,15 @@ class recipe_list extends StatelessWidget {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.15),
                     blurRadius: 10,
-                    offset: const Offset(0, 5),
+                    //offset: const Offset(0, 5),
                   ),
                 ],
               ),
               child: Row(
                 children: [
                   Container(
-                    width: 70,
-                    height: 70,
+                    width: 85,
+                    height: 85,
                     decoration: const BoxDecoration(
                       color: Color(0xFFFCEFEA),
                       borderRadius: BorderRadius.only(
@@ -39,7 +56,8 @@ class recipe_list extends StatelessWidget {
                         bottomLeft: Radius.circular(16),
                       ),
                     ),
-                    child: Center(
+                    child: FittedBox(
+                      alignment: Alignment.center,
                       child: Text(
                         recipe["emoji"],
                         style: const TextStyle(fontSize: 28),
@@ -88,6 +106,7 @@ class recipe_list extends StatelessWidget {
                   ),
                 ],
               ),
+                ),
             );
           },
         ),
