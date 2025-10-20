@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class submit_btn extends StatelessWidget {
-  const submit_btn({
-    super.key,
-  });
+class submit_btn2 extends StatelessWidget {
+  const submit_btn2({super.key, required GlobalKey<FormState> formKey})
+    : _formKey = formKey;
+
+  final GlobalKey<FormState> _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,9 @@ class submit_btn extends StatelessWidget {
             foregroundColor: Colors.white,
             backgroundColor: Color(0xFFFF7E5F),
           ),
-          onPressed: () {},
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {}
+          },
           child: Text(
             'Publier la reccet',
             style: TextStyle(fontWeight: FontWeight.bold),
