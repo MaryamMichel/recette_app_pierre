@@ -1,5 +1,6 @@
 # recette_app_pierre
 
+app de recette de 1 jour avec pierre (flutter)
 Projet flutter avec piere pou une evaluation
 
 ## Getting Started
